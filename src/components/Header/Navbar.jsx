@@ -3,8 +3,9 @@ import React from "react";
 const Navbar = () => {
   const links = (
     <>
-      <li className="mr-2">Home</li>
-      <li className="mr-2">About</li>
+      <li className="mr-10 text-[18px]">Home</li>
+      <li className="mr-10 text-[18px]">Listed Books</li>
+      <li className="mr-10 text-[18px]">Pages to Read</li>
     </>
   );
 
@@ -36,13 +37,14 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <a className="btn btn-ghost text-2xl">Book Vibe</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        <button className="text-white btn btn-success mr-5 text-[15px]">Sign In</button>
+        <button className="text-white btn btn-info text-[15px]">Sign Up</button>
       </div>
     </div>
   );
