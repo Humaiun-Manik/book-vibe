@@ -1,13 +1,29 @@
 import React from "react";
 import { useLoaderData, useParams } from "react-router";
+import { addToStoredDB } from "../../utility/addToDB";
 
 const BookDetails = () => {
   const books = useLoaderData([]);
   const { id } = useParams();
-  const bookId = parseInt(id);
-  const book = books.find((book) => book.bookId === bookId);
-  const { bookName, author, category, image, publisher, rating, review, tags, totalPages, yearOfPublishing } =
-    book;
+  const bId = parseInt(id);
+  const book = books.find((book) => book.bookId === bId);
+  const {
+    bookId,
+    bookName,
+    author,
+    category,
+    image,
+    publisher,
+    rating,
+    review,
+    tags,
+    totalPages,
+    yearOfPublishing,
+  } = book || {};
+
+  const handleRead = (id) => {
+    addToStoredDB(id);
+  };
 
   return (
     <div className="card lg:card-side gap-10 bg-base-100 shadow-sm w-full my-16">
@@ -23,8 +39,10 @@ const BookDetails = () => {
         </p>
         <div className="flex border-b-2 py-5">
           <p className="font-bold text-[17px]">Tag</p>
-          {tags.map((tag) => (
-            <p className="text-emerald-500">#{tag}</p>
+          {tags.map((tag, index) => (
+            <p key={index} className="text-emerald-500">
+              #{tag}
+            </p>
           ))}
         </div>
 
@@ -53,7 +71,9 @@ const BookDetails = () => {
         </div>
 
         <div className="card-actions">
-          <button className="btn btn-outline font-bold">Read</button>
+          <button onClick={() => handleRead(bookId)} className="btn btn-outline font-bold">
+            Read
+          </button>
           <button className="btn btn-info">WishList</button>
         </div>
       </div>
